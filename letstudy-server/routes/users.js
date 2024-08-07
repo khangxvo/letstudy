@@ -4,8 +4,9 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const _ = require('lodash')
+const auth = require('../middleware/login')
 
-const { User, validate } = require('../models/users')
+const { User, validate, validateAdmin } = require('../models/users')
 
 router.get('/', async (req, res) => {
     const users = await User.find().select('name email');
@@ -35,6 +36,14 @@ router.post('/', async (req, res) => {
     //.send(_.pick(user, ["_id", "name", "email"])) sends a response containing selected properties (_id, name, and email) of the user object using lodash's _.pick function.
     res.header('x-auth-token', token).send(_.pick(user, ["_id", "name", "email"]));
 
+})
+
+// Delete users
+router.delete('/:id', auth, async (req, res) => {
+    const user = await User.findByIdAndDelete(req.params.id)
+    if (!user) return res.status(404).send('User with ID does not exit')
+
+    res.send(user)
 })
 
 /**

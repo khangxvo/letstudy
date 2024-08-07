@@ -31,10 +31,7 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    tasks: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Task'
-    }]
+    tasks: []
 })
 
 /**
@@ -80,5 +77,14 @@ function validateUser(user) {
     return schema.validate(user)
 }
 
+function validateAdmin(admin) {
+    const schema = Joi.object({
+        admin_id: Joi.string().min(1).required()
+    })
+
+    return schema.valid(admin)
+}
+
 exports.User = User,
     exports.validate = validateUser;
+exports.validateAdmin = validateAdmin;
