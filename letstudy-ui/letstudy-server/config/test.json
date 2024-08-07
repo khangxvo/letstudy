@@ -1,5 +1,0 @@
-{
-    "db": "mongodb://localhost/letstudy_tests",
-    "PORT": 2000,
-    "jwtPrivateKey": "a"
-}

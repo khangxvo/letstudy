@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const Joi = require('joi')
 const jwt = require('jsonwebtoken')
 const config = require('config')
+const { Task } = require("./tasks")
+const Schema = mongoose.Schema
 
 /* This code snippet is defining a Mongoose schema for a user in a Node.js application. Here's a
 breakdown of what each property in the schema represents: */
@@ -28,7 +30,11 @@ const userSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false
-    }
+    },
+    tasks: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Task'
+    }]
 })
 
 /**

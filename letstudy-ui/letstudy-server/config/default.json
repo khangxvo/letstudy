@@ -1,9 +1,0 @@
-{
-    "PORT": "",
-    "db": "mongodb://localhost/letstudy",
-    "jwtPrivateKey": "",
-    "login_api_url": "http://localhost:3000/letstudy/login",
-    "tasksURL": "/letstudy/api/tasks/",
-    "usersURL": "/letstudy/api/users/",
-    "loginURL": "/letstudy/api/login/"
-}

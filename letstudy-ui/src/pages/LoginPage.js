@@ -36,9 +36,11 @@ const Login = () => {
                 const errorData = await response.text();
                 throw new Error(errorData || 'Login failed');
             } else {
-                const data = await response.text()
-                // console.log('Login successful', data)
-                setSuccess(`Login successful: ${data}`)
+                const data = await response.json()
+                const { token, user_id } = data
+                console.log(`token: ${token}`) // TODO: delete this after
+                console.log(`userID: ${user_id}`) // TODO: delete this after
+                setSuccess(`Login successful`)
                 setError('')
             }
         } catch (error) {

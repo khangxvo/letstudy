@@ -35,7 +35,8 @@ router.post('/', async (req, res) => {
 
     // Generate a JSON Web Token (JWT) for the user
     const token = user.generateAuthToken()
-    res.send(token)
+    const user_id = user._id
+    res.send({ token, user_id })
 })
 
 /**
