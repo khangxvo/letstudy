@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/LoginPage.css'
 import { getURL, postURL } from '../functions/urlMethods';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     // const loginURL = 'http://localhost:8080/letstudy/api/login'
-    const baseURL = 'http://localhost:8080/'
+    const baseURL = 'http://localhost:3000/' //! Change this when deploy
     const [loginURL, setLoginURL] = useState('')
 
     // state variables and their set function
@@ -12,6 +13,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
+    const navigate = useNavigate()
 
     const getLoginURL = async (url: string) => {
         try {
@@ -56,6 +58,7 @@ const LoginPage = () => {
                 console.log(`token: ${token}`)
                 console.log(`user_id: ${user_id}`)
                 setSuccess("Login successful!");
+                navigate('/homepage')
             }
 
         } catch (error) {

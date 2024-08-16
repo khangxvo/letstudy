@@ -24,6 +24,9 @@ const taskSchema = new mongoose.Schema({
         min: 1,
         max: 24
     },
+    content: {
+        type: String
+    },
     dateCreated: {
         type: Date,
         required: true,
